@@ -29,10 +29,10 @@ public class Application extends SpringBootServletInitializer {
     public String hello() throws Exception {
     	SqlSession sqlSession=SqlSessionFactoryUtil.openSession();
         UserDao userDao = sqlSession.getMapper(UserDao.class); 
-        User user1 = new User("ccc", "dddd");
+        User user1 = new User("fff", "eseses");
         userDao.insertUserInDb(user1);
         sqlSession.commit();
-        String id = "ccc";  
+        String id = "fff";  
         User curUser = userDao.findUserById(id);  
         if(curUser!=null){  
             System.out.println("HelloWorld:"+curUser.getId());  

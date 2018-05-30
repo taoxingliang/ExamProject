@@ -11,8 +11,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import db.dao.UserDao;
 import db.entity.User;
@@ -21,7 +23,7 @@ import db.util.SqlSessionFactoryUtil;
 
 @SpringBootApplication // Spring Boot项目的核心注解，主要目的是开启自动配置
 @Controller // 标明这是一个SpringMVC的Controller控制器
-@ComponentScan(basePackages = "start")
+@ComponentScan(basePackages = "web.application")
 public class Application extends SpringBootServletInitializer {
 
     @RequestMapping("/hello")
@@ -46,6 +48,19 @@ public class Application extends SpringBootServletInitializer {
 //        PreparedStatement pstmt = conn.prepareStatement(sql);
         return "hello world : curUser.getId() = " + curUser.getPassword();
     }
+    
+    
+    @GetMapping("/add")
+    public String  add() {
+    	return "aaa";
+    }
+    
+    @RequestMapping("/ccc")
+    @ResponseBody
+    public String index(){
+      return "aaaaaa";
+    }
+
 
     // 在main方法中启动一个应用，即：这个应用的入口
     public static void main(String[] args) {

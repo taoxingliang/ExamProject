@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>录题系统</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/addquestion.js"></script>
+</head>
+<body background="img/background.jpg";>
+	<h1 class=“title” align="center">行测录题系统</h1>
+
+	题目类型：
+	<select id="question_type" name="questionType" form="carform">
+	  <option value="0"></option>
+	  <option value="1">常识判断</option>
+	  <option value="2">语言理解与表达</option>
+	  <option value="3">数量关系</option>
+	  <option value="4">判断推理</option>
+	  <option value="5">资料分析</option>
+	</select><div id="question_typeid"></div>
+	     题目难度：
+	<select id="question_level" name="questionLevel" form="carform">
+	  <option value="0"></option>
+	  <option value="1">简单</option>
+	  <option value="2">一般</option>
+	  <option value="3">难</option>
+	  <option value="4">困难</option>
+	  <option value="5">艰难</option>
+	</select><div id="question_levelid"></div>
+	<div>
+		<label>题目：</label>
+		<br>
+		<textarea id="question" rows="5" class="question" name="question" form="carform"></textarea>
+	</div><div id="questionid"></div>
+	
+	<br>
+	<div>
+		<label>选项A:</label>
+		<br>
+		<textarea id="select_A" rows="3" class="select" name="selectA" form="carform"></textarea>
+	</div><div id="select_Aid"></div>
+	<br>
+	选项B:
+	<br>
+	<textarea id="select_B" rows="3" class="select" name="selectB" form="carform"></textarea>
+	<div id="select_Bid"></div>
+	<br>
+	选项C:
+	<br>
+	<textarea id="select_C" rows="3" class="select" name="selectC" form="carform"></textarea>
+	<div id="select_Cid"></div>
+	<br>
+	选项D:
+	<br>
+	<textarea id="select_D"  rows="3" class="select" name="selectD" form="carform"></textarea>
+	<div id="select_Did"></div>
+	<br>
+	答案解析：
+	<br>
+	<textarea id="analysis" rows="5" class="question" name="analysis" form="carform"></textarea>
+	<div id="analysisid"></div>
+	<br>
+	题目答案：
+	<select id="question_answer" name="questionAnswer" form="carform">
+	  <option value="0"></option>
+	  <option value="1">A</option>
+	  <option value="2">B</option>
+	  <option value="3">C</option>
+	  <option value="4">D</option>
+	</select>
+	<div id="question_answerid"></div>
+	<br><br>
+	<form action="/ExamProject/insertQuestion" id="carform" onsubmit="return isNull()">
+		<input class="submitQuestion" type="submit" value="提交"/>
+	</form>
+	<br>
+	
+</body>
+</html>

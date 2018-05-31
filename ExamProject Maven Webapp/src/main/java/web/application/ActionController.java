@@ -35,7 +35,7 @@ public class ActionController {
   
   @GetMapping("/addQuestion")
   public String test(){ 
-      return "aaa";
+      return "addQuestion";
   }
   @RequestMapping("/insertQuestion")
   public String insertQuestion(HttpServletRequest request) {
@@ -75,8 +75,7 @@ public class ActionController {
       }
       questionDao.insertQuestionInDb(question);
       sqlSession.commit();
-      return "aaa";
-	  
+      return "addSuccess";
   }
  
 }

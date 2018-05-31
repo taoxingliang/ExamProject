@@ -19,6 +19,17 @@
 	text-align:center; 
 	vertical-align:middel;
 }
+.continue
+{
+	width:140px;
+	height:36px;
+	line-height:18px;
+	font-size:18px;
+	color:#63955e;
+	padding-bottom:4px£»
+	text-align:center; 
+	vertical-align:middel;
+}
 input{
     border: 1px solid #ccc;
     padding: 7px 0px;

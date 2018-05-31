@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="db.dao.QuestionDao">  
+<!--     <select id="findUserById" parameterType="String" resultType="User">  
+        select * from user where id=#{id}  
+    </select> -->
+    <insert id="insertQuestionInDb" parameterType="Question">  
+        insert into question (questionId
+							,region
+							,questionEditor
+							,questionLevel
+							,questionTypeOne
+							,questionTypeTwo
+							,question
+							,selectA
+							,selectB
+							,selectC
+							,selectD
+							,selectOther
+							,analysis
+							,answer
+							,ansSum
+							,rightSum
+							,selectASum
+							,selectBSum
+							,selectCSum
+							,selectOtherSum
+							,other)  
+              values   (#{questionId}
+						,#{region}
+						,#{questionEditor}
+						,#{questionLevel}
+						,#{questionTypeOne}
+						,#{questionTypeTwo}
+						,#{question}
+						,#{selectA}
+						,#{selectB}
+						,#{selectC}
+						,#{selectD}
+						,#{selectOther}
+						,#{analysis}
+						,#{answer}
+						,#{ansSum}
+						,#{rightSum}
+						,#{selectASum}
+						,#{selectBSum}
+						,#{selectCSum}
+						,#{selectOtherSum}
+						,#{other})
+    </insert>
+</mapper>  

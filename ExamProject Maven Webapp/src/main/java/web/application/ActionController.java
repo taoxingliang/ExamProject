@@ -71,7 +71,7 @@ public class ActionController {
           } else if ("questionAnswer".equals(k)) {
         	  question.setAnswer(Integer.parseInt(map.get(k)[0]));
           }
-          result.append(k + ": " + "\n" + map.get(k)[0] + "\n");
+          System.out.println(k + ": " + "-" + map.get(k)[0] + "-\n");
       }
       questionDao.insertQuestionInDb(question);
       sqlSession.commit();

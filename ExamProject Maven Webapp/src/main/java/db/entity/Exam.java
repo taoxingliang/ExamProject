@@ -6,6 +6,9 @@ public class Exam {
 	private int questionType;
 	private int questionNum;
 	private String questionInfo;
+	private String errorQuestion;
+	private int score;
+	
 	public long getExamId() {
 		return examId;
 	}
@@ -35,6 +38,18 @@ public class Exam {
 	}
 	public void setQuestionInfo(String questionInfo) {
 		this.questionInfo = questionInfo;
+	}
+	public String getErrorQuestion() {
+		return errorQuestion;
+	}
+	public void setErrorQuestion(String errorQuestion) {
+		this.errorQuestion = errorQuestion;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 }

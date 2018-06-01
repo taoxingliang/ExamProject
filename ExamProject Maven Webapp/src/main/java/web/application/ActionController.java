@@ -84,7 +84,20 @@ public class ActionController {
       sqlSession.commit();
       return "addSuccess";
   }
-  
+  /**
+   * 获取试卷  questionType 试卷类型， questionNum 题目数目
+   * 客户端数据格式
+   * {
+		"Head":{
+		},
+		"Body":{
+			"questionType":"1",
+			"questionNum":"3"
+		}
+   * }
+   * @param jsonParam
+   * @return
+   */
   @ResponseBody
   @RequestMapping(value = "/GetExam", method = RequestMethod.POST)
   public String getExam(@RequestBody JSONObject jsonParam){
@@ -147,6 +160,71 @@ public class ActionController {
 	    result.put("questionSize", questionList.size());
 	    
 
+	    return result.toJSONString();
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/GetScore", method = RequestMethod.POST)
+  public String getScore(@RequestBody JSONObject jsonParam){
+	// 直接将json信息打印出来
+	    System.out.println(jsonParam.toJSONString());
+	    JSONObject error;
+	    JSONObject result = new JSONObject();
+	    int num=0;
+	    long examId=0;
+	    try {
+		    HashMap body = (HashMap) jsonParam.get("Body");
+		    
+		    if (body != null) {
+			    num = Integer.parseInt(body.get("questionNum").toString());
+			    examId = Long.parseLong(body.get("examId").toString());
+			    HashMap questions = (HashMap)body.get("question");
+			    if (num == 0 || examId <= 0) {
+			    	error = new JSONObject();
+			    	error.put("err", "examId and questionNum can not be 0");
+			    	return error.toJSONString();
+			    }
+			    SqlSession sqlSession=SqlSessionFactoryUtil.openSession();
+			    QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
+			    StringBuilder errorquestioninfo = new StringBuilder();
+			    int score = 0;
+			    for (int i = 0; i < num; i++) {
+			    	JSONObject ques = new JSONObject();
+			    	HashMap question = (HashMap)questions.get("question" + (i + 1));
+			    	System.out.println("query question in db:" + question.get("questionId").toString());
+			    	Question qu = questionDao.queryQuestion(question.get("questionId").toString());
+			    	if (qu.getAnswer() == Integer.parseInt(question.get("answer").toString())) {
+			    		score++;
+			    		ques.put("isRight", 1);
+			    		System.out.println("right");
+			    	} else {
+			    		errorquestioninfo.append(qu.getQuestionId() + "#");
+			    		ques.put("isRight", 0);
+			    		System.out.println("error");
+			    	}
+			    	
+			    	ques.put("questionId", qu.getQuestionId());
+			    	ques.put("analysis", qu.getAnalysis());
+			    	result.put("question" + i, ques);
+			    }
+			    ExamDao examDao = sqlSession.getMapper(ExamDao.class);
+			    Exam exam = examDao.findExamById(body.get("examId").toString());
+			    exam.setErrorQuestion(errorquestioninfo.toString());
+			    result.put("questionNum",num);
+			    result.put("rightNum",score);
+			    exam.setScore(score);
+			    examDao.updateExamInDb(exam);
+			    sqlSession.commit();
+		    } else {
+		    	error = new JSONObject();
+		    	error.put("err", "body is null");
+		    	return error.toJSONString();
+		    }
+	    } catch (Exception e) {
+	    	error = new JSONObject();
+	    	error.put("err", e.getLocalizedMessage());
+	    	return error.toJSONString();
+	    }
 	    return result.toJSONString();
   }
  

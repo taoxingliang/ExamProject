@@ -11,11 +11,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							region,
 							questionType,
 							questionNum,
-							questionInfo)  
+							questionInfo,
+							errorQuestion,
+							score)  
               values   (#{examId},
 						#{region},
 						#{questionType},
 						#{questionNum},
-						#{questionInfo})
+						#{questionInfo},
+						#{errorQuestion},
+						#{score})
     </insert>
+    <update id="updateExamInDb" parameterType="Exam">
+        update exam
+            set exam.examId = #{examId},
+                exam.region = #{region},
+                exam.questionType = #{questionType},
+                exam.questionNum = #{questionNum},
+                exam.questionInfo = #{questionInfo},
+                exam.errorQuestion = #{errorQuestion},
+                exam.score = #{score}
+         where exam.examId = #{examId} 
+	</update> 
 </mapper>  

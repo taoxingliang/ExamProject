@@ -50,4 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						,#{selectOtherSum}
 						,#{other})
     </insert>
+    <select id="queryExam" parameterType="Integer" resultType="Question">  
+		select * from question where questionTypeTwo=#{questionType} order by rand() LIMIT #{questionNum} 
+ 	</select>
 </mapper>  

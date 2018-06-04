@@ -3,8 +3,8 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="db.dao.ExamDao">  
-    <select id="findExamById" parameterType="String" resultType="Exam">  
-        select * from exam where id=#{id}  
+    <select id="findExamById" parameterType="Long" resultType="Exam">  
+        select * from exam where examId=#{id}
     </select>
     <insert id="insertExamInDb" parameterType="Exam">  
         insert into exam (examId,

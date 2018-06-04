@@ -208,7 +208,7 @@ public class ActionController {
 			    	result.put("question" + i, ques);
 			    }
 			    ExamDao examDao = sqlSession.getMapper(ExamDao.class);
-			    Exam exam = examDao.findExamById(body.get("examId").toString());
+			    Exam exam = examDao.findExamById(examId);
 			    exam.setErrorQuestion(errorquestioninfo.toString());
 			    result.put("questionNum",num);
 			    result.put("rightNum",score);
